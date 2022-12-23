@@ -1,0 +1,5 @@
+00:00:06.712 [schedule-pool-3] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[root][Error][登录用户：root 不存在]
+00:00:58.884 [schedule-pool-2] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Success][登录成功]
+00:11:07.441 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+00:33:45.257 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+00:44:31.323 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
