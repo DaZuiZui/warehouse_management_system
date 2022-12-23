@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AppShuserMapper">
+    
+    <resultMap type="AppShuser" id="AppShuserResult">
+        <result property="id"    column="id"    />
+        <result property="username"    column="username"    />
+        <result property="password"    column="password"    />
+        <result property="ic"    column="ic"    />
+        <result property="usersex"    column="usersex"    />
+        <result property="icType"    column="ic_type"    />
+        <result property="userRole"    column="user_role"    />
+        <result property="wordId"    column="word_id"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectAppShuserVo">
+        select id, username, password, ic, usersex, ic_type, user_role, word_id, create_by, create_time, update_by, update_time, del_flag, status from app_shuser
+    </sql>
+
+    <select id="selectAppShuserList" parameterType="AppShuser" resultMap="AppShuserResult">
+        <include refid="selectAppShuserVo"/>
+        <where>  
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="password != null  and password != ''"> and password = #{password}</if>
+            <if test="ic != null  and ic != ''"> and ic = #{ic}</if>
+            <if test="usersex != null  and usersex != ''"> and usersex = #{usersex}</if>
+            <if test="icType != null "> and ic_type = #{icType}</if>
+            <if test="userRole != null "> and user_role = #{userRole}</if>
+            <if test="wordId != null  and wordId != ''"> and word_id = #{wordId}</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppShuserById" parameterType="Long" resultMap="AppShuserResult">
+        <include refid="selectAppShuserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAppShuser" parameterType="AppShuser" useGeneratedKeys="true" keyProperty="id">
+        insert into app_shuser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="ic != null">ic,</if>
+            <if test="usersex != null">usersex,</if>
+            <if test="icType != null">ic_type,</if>
+            <if test="userRole != null">user_role,</if>
+            <if test="wordId != null">word_id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">#{username},</if>
+            <if test="password != null">#{password},</if>
+            <if test="ic != null">#{ic},</if>
+            <if test="usersex != null">#{usersex},</if>
+            <if test="icType != null">#{icType},</if>
+            <if test="userRole != null">#{userRole},</if>
+            <if test="wordId != null">#{wordId},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppShuser" parameterType="AppShuser">
+        update app_shuser
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="ic != null">ic = #{ic},</if>
+            <if test="usersex != null">usersex = #{usersex},</if>
+            <if test="icType != null">ic_type = #{icType},</if>
+            <if test="userRole != null">user_role = #{userRole},</if>
+            <if test="wordId != null">word_id = #{wordId},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAppShuserById" parameterType="Long">
+        delete from app_shuser where id = #{id}
+    </delete>
+
+    <delete id="deleteAppShuserByIds" parameterType="String">
+        delete from app_shuser where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
