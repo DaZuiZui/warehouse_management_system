@@ -1,0 +1,2 @@
+# warehouse_management_system
+基于springboot和vue实现的仓库管理系统
