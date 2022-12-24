@@ -83,7 +83,6 @@
       <el-table-column label="昵称" align="center" prop="name" />
       <el-table-column label="类型" align="center" prop="type" />
       <el-table-column label="数量" align="center" prop="numbers" />
-      <el-table-column label="状态" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
