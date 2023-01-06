@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.AppShgoodMapper">
+<mapper namespace="com.ruoyi.system.mapper.AppShgoodoutMapper">
     
-    <resultMap type="AppShgood" id="AppShgoodResult">
+    <resultMap type="AppShgoodout" id="AppShgoodoutResult">
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
         <result property="type"    column="type"    />
@@ -15,30 +15,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime"    column="update_time"    />
         <result property="delFlag"    column="del_flag"    />
         <result property="status"    column="status"    />
+        <result property="goodId"    column="good_id"    />
     </resultMap>
 
-    <sql id="selectAppShgoodVo">
-        select id, name, type, numbers, create_by, create_time, update_by, update_time, del_flag, status from app_shgood
+    <sql id="selectAppShgoodoutVo">
+        select id, name, type, numbers, create_by, create_time, update_by, update_time, del_flag, status, good_id from app_shgoodout
     </sql>
 
-    <select id="selectAppShgoodList" parameterType="AppShgood" resultMap="AppShgoodResult">
-        <include refid="selectAppShgoodVo"/>
+    <select id="selectAppShgoodoutList" parameterType="AppShgoodout" resultMap="AppShgoodoutResult">
+        <include refid="selectAppShgoodoutVo"/>
         <where>  
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
             <if test="type != null  and type != ''"> and type = #{type}</if>
             <if test="numbers != null "> and numbers = #{numbers}</if>
             <if test="status != null "> and status = #{status}</if>
-            <if test="true"> and del_flag = 0</if>
+            <if test="goodId != null "> and good_id = #{goodId}</if>
         </where>
     </select>
     
-    <select id="selectAppShgoodById" parameterType="Long" resultMap="AppShgoodResult">
-        <include refid="selectAppShgoodVo"/>
-        where id = #{id} abd del_flag = 0
+    <select id="selectAppShgoodoutById" parameterType="Long" resultMap="AppShgoodoutResult">
+        <include refid="selectAppShgoodoutVo"/>
+        where id = #{id}
     </select>
         
-    <insert id="insertAppShgood" parameterType="AppShgood" useGeneratedKeys="true" keyProperty="id">
-        insert into app_shgood
+    <insert id="insertAppShgoodout" parameterType="AppShgoodout" useGeneratedKeys="true" keyProperty="id">
+        insert into app_shgoodout
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
             <if test="type != null">type,</if>
@@ -49,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
             <if test="delFlag != null">del_flag,</if>
             <if test="status != null">status,</if>
+            <if test="goodId != null">good_id,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
@@ -60,11 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">#{updateTime},</if>
             <if test="delFlag != null">#{delFlag},</if>
             <if test="status != null">#{status},</if>
+            <if test="goodId != null">#{goodId},</if>
          </trim>
     </insert>
 
-    <update id="updateAppShgood" parameterType="AppShgood">
-        update app_shgood
+    <update id="updateAppShgoodout" parameterType="AppShgoodout">
+        update app_shgoodout
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="type != null">type = #{type},</if>
@@ -75,16 +78,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="delFlag != null">del_flag = #{delFlag},</if>
             <if test="status != null">status = #{status},</if>
+            <if test="goodId != null">good_id = #{goodId},</if>
         </trim>
         where id = #{id}
     </update>
 
-    <delete id="deleteAppShgoodById" parameterType="Long">
-        update app_shgood  set del_flag = '2' where id = #{id}
+    <delete id="deleteAppShgoodoutById" parameterType="Long">
+        delete from app_shgoodout where id = #{id}
     </delete>
 
-    <delete id="deleteAppShgoodByIds" parameterType="String">
-        update app_shgood set del_flag = '2' where id in
+    <delete id="deleteAppShgoodoutByIds" parameterType="String">
+        delete from app_shgoodout where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
