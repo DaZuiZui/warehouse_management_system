@@ -9,14 +9,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="类型" prop="type">
-        <el-input
-          v-model="queryParams.type"
-          placeholder="请输入类型"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="数量" prop="numbers">
         <el-input
           v-model="queryParams.numbers"
@@ -83,6 +75,7 @@
       <el-table-column label="昵称" align="center" prop="name" />
       <el-table-column label="类型" align="center" prop="type" />
       <el-table-column label="数量" align="center" prop="numbers" />
+      <el-table-column label="状态" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -116,9 +109,6 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="昵称" prop="name">
           <el-input v-model="form.name" placeholder="请输入昵称" />
-        </el-form-item>
-        <el-form-item label="类型" prop="type">
-          <el-input v-model="form.type" placeholder="请输入类型" />
         </el-form-item>
         <el-form-item label="数量" prop="numbers">
           <el-input v-model="form.numbers" placeholder="请输入数量" />

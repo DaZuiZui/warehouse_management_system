@@ -98,7 +98,7 @@
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['system:shgoodout:remove']"
-          >删除</el-button>
+          >删除记录</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -115,16 +115,10 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="昵称" prop="name">
-          <el-input v-model="form.name" placeholder="请输入昵称" />
+          <el-input v-model="form.name" placeholder="请输入要出库的商品昵称" />
         </el-form-item>
         <el-form-item label="数量" prop="numbers">
-          <el-input v-model="form.numbers" placeholder="请输入数量" />
-        </el-form-item>
-        <el-form-item label="逻辑删除" prop="delFlag">
-          <el-input v-model="form.delFlag" placeholder="请输入逻辑删除" />
-        </el-form-item>
-        <el-form-item label="商品id" prop="goodId">
-          <el-input v-model="form.goodId" placeholder="请输入出库商品id" />
+          <el-input v-model="form.numbers" placeholder="请输入出库数量" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
