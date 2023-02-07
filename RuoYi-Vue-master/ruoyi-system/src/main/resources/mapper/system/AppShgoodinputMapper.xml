@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AppShgoodinputMapper">
+    
+    <resultMap type="AppShgoodinput" id="AppShgoodinputResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="numbers"    column="numbers"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectAppShgoodinputVo">
+        select id, name, type, numbers, create_by, create_time, update_by, update_time, del_flag, status from app_shgoodinput
+    </sql>
+
+    <select id="selectAppShgoodinputList" parameterType="AppShgoodinput" resultMap="AppShgoodinputResult">
+        <include refid="selectAppShgoodinputVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="numbers != null "> and numbers = #{numbers}</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppShgoodinputById" parameterType="Long" resultMap="AppShgoodinputResult">
+        <include refid="selectAppShgoodinputVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAppShgoodinput" parameterType="AppShgoodinput" useGeneratedKeys="true" keyProperty="id">
+        insert into app_shgoodinput
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="type != null">type,</if>
+            <if test="numbers != null">numbers,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="type != null">#{type},</if>
+            <if test="numbers != null">#{numbers},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppShgoodinput" parameterType="AppShgoodinput">
+        update app_shgoodinput
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="numbers != null">numbers = #{numbers},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAppShgoodinputById" parameterType="Long">
+        delete from app_shgoodinput where id = #{id}
+    </delete>
+
+    <delete id="deleteAppShgoodinputByIds" parameterType="String">
+        delete from app_shgoodinput where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
