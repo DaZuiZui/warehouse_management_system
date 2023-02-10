@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 商品对象 app_shgood
  * 
  * @author ruoyi
- * @date 2022-12-24
+ * @date 2023-02-08
  */
 public class AppShgood extends BaseEntity
 {
@@ -34,7 +34,6 @@ public class AppShgood extends BaseEntity
     private Long delFlag;
 
     /** 状态 */
-    @Excel(name = "状态")
     private Long status;
 
     public void setId(Long id) 

@@ -81,7 +81,6 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="主键" align="center" prop="id" />
       <el-table-column label="昵称" align="center" prop="name" />
-      <el-table-column label="类型" align="center" prop="type" />
       <el-table-column label="数量" align="center" prop="numbers" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">

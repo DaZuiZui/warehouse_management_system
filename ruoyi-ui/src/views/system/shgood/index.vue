@@ -9,6 +9,8 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+ 
+    
       <el-form-item label="数量" prop="numbers">
         <el-input
           v-model="queryParams.numbers"
@@ -73,9 +75,7 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="主键" align="center" prop="id" />
       <el-table-column label="昵称" align="center" prop="name" />
-      <el-table-column label="类型" align="center" prop="type" />
       <el-table-column label="数量" align="center" prop="numbers" />
-      <el-table-column label="状态" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -112,9 +112,6 @@
         </el-form-item>
         <el-form-item label="数量" prop="numbers">
           <el-input v-model="form.numbers" placeholder="请输入数量" />
-        </el-form-item>
-        <el-form-item label="逻辑删除" prop="delFlag">
-          <el-input v-model="form.delFlag" placeholder="请输入逻辑删除" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -157,7 +154,6 @@ export default {
         name: null,
         type: null,
         numbers: null,
-        status: null
       },
       // 表单参数
       form: {},
